@@ -20,7 +20,7 @@ const Hero = () => {
                   {words.map((word) => (
                     <span key={word.text} className='flex items-center md:gap-3 gap-1 pb-2'>
                       <img
-                        src='{word.imgPath}'
+                        src={word.imgPath}
                         alt='{word.text}'
                         className='xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50'
                       />
