@@ -6,6 +6,8 @@ import RotatingText from '../components/RotatingText.jsx'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Aurora from '../components/Aurora.jsx'
+import ScrambledText from '../components/ScrambledText.jsx'
+
 
 const Hero = () => {
   useGSAP(() => {
@@ -21,8 +23,9 @@ const Hero = () => {
   });
 
   return (
+
     <section id='hero' className='relative w-screen h-screen overflow-hidden'>
-     
+
       <div className='absolute inset-0 w-full h-full z-0'>
         <Aurora
           colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
@@ -32,11 +35,13 @@ const Hero = () => {
         />
       </div>
 
-     
+
       <div className='hero-layout relative z-10'>
         <header className='flex flex-col justify-center md:w-full w-screen md:px-20 px-5 h-full'>
           <figure>
+
             <div className='hero-3d-layout'>
+
               <HeroExperience />
             </div>
           </figure>
@@ -54,7 +59,7 @@ const Hero = () => {
                   transition={{ type: "spring", damping: 30, stiffness: 150 }}
                   rotationInterval={3500}
                 />
-                <h1 style={{ fontSize: '3rem' }}>AMITESH's ROOM</h1>
+                <h1 style={{ fontSize: "3rem" }}>AMITESH's ROOM</h1>
               </div>
               <h1>
                 Engineering <span className='slide'>
