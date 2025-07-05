@@ -1,14 +1,17 @@
 import Hero from "./sections/Hero"
-import NavBar from "./components/Navbar"
-import About from "./sections/About"
+import NavBar from "./components/Social"
+
 
 const App = () => {
   return (
 
     <>
-      <NavBar />
+    
       <Hero />
-      <About />
+      <NavBar />
+      
+
+    
     </>
 
   )

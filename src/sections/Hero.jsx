@@ -1,13 +1,13 @@
-import React from 'react'
-import { words } from '../constants/index.js'
-import Button from '../components/Button.jsx'
-import HeroExperience from '../components/HeroModels/HeroExperience.jsx'
-import RotatingText from '../components/RotatingText.jsx'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import Aurora from '../components/Aurora.jsx'
-import ScrambledText from '../components/ScrambledText.jsx'
-
+import React from 'react';
+import { words } from '../constants/index.js';
+import Button from '../components/Button.jsx';
+import HeroExperience from '../components/HeroModels/HeroExperience.jsx';
+import RotatingText from '../components/RotatingText.jsx';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import Aurora from '../components/Aurora.jsx';
+import Dock from '../components/Dock.jsx';
+import { FaHome, FaUserFriends, FaProjectDiagram, FaEnvelope } from 'react-icons/fa';
 
 const Hero = () => {
   useGSAP(() => {
@@ -22,10 +22,45 @@ const Hero = () => {
     });
   });
 
-  return (
+const items = [
+    {
+    icon: <FaHome size={20} />,
+    label: 'Home',
+    onClick: () => (window.location.href = '/')
+  },
+  {
+    icon: <FaUserFriends size={20} />,
+    label: 'Social',
+    onClick: () => (window.location.href = '/social')
+  },
+  {
+    icon: <FaProjectDiagram size={20} />,
+    label: 'Projects',
+    onClick: () => (window.location.href = '/projects')
+  },
+{
+    icon: <FaEnvelope size={20} />,
+    label: 'Contact',
+    onClick: () => (window.location.href = '/contact')
+  }
+];
 
+
+  return (
     <section id='hero' className='relative w-screen h-screen overflow-hidden'>
 
+    
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50">
+      <h1 style={{}}>Amitesh</h1>
+        <Dock
+          items={items}
+          panelHeight={68}
+          baseItemSize={50}
+          magnification={70}
+        />
+      </div>
+
+      {/* Aurora Background */}
       <div className='absolute inset-0 w-full h-full z-0'>
         <Aurora
           colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
@@ -35,13 +70,11 @@ const Hero = () => {
         />
       </div>
 
-
+      {/* Hero Content */}
       <div className='hero-layout relative z-10'>
         <header className='flex flex-col justify-center md:w-full w-screen md:px-20 px-5 h-full'>
           <figure>
-
             <div className='hero-3d-layout'>
-
               <HeroExperience />
             </div>
           </figure>
@@ -88,6 +121,7 @@ const Hero = () => {
           </div>
         </header>
       </div>
+
     </section>
   );
 };

@@ -1,8 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useMediaQuery } from "react-responsive";
-import { Room } from "../HeroModels/Room";
-import HeroLights from "../HeroModels/HeroLights";
+
 import { Suspense } from "react";
 
 const HeroExperience = () => {
@@ -33,7 +32,7 @@ const HeroExperience = () => {
           position={[0, -3.5, 0]}
           rotation={[0, -Math.PI / 4, 0]}
         >
-          
+          <Computer />
         </group>
       </Suspense>
     </Canvas>
