@@ -1,5 +1,5 @@
-import InfiniteMenu from './InfiniteMenu.jsx';
-import ScrollReveal from './ScrollReveal.jsx';
+import InfiniteMenu from '../components/InfiniteMenu.jsx';
+import ScrollReveal from '../components/ScrollReveal.jsx';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,16 +13,16 @@ export default function NavBar() {
 
   const items = [
     {
-      image: './public/images/linkedin.jpg',
+      image: './images/linkedin.jpg',
       link: 'https://www.linkedin.com/in/amitesh-sonwani-141376341/',
       title: 'Linkedin',
       description: 'Professional Profile'
     },
     {
-      image: './public/images/github.jpg', link: 'https://github.com/eyescratcher22', title: 'Github', description: 'get my project repos here!'
+      image: './images/github.jpg', link: 'https://github.com/eyescratcher22', title: 'Github', description: 'get my project repos here!'
     },
     {
-      image: './public/images/instagram.jpg',
+      image: './images/instagram.jpg',
       link: 'https://www.instagram.com/_._amitesh_._/',
       title: 'Instagram',
       description: 'Personal Profile'
