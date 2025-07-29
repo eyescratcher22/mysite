@@ -1,6 +1,86 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Send, Terminal, User, Mail, MessageSquare, MapPin, Clock, Briefcase, Zap, Shield, Code } from 'lucide-react';
 
+// Animated Terminal Heading Component
+const AnimatedHeading = () => {
+  const [displayText, setDisplayText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  const [isComplete, setIsComplete] = useState(false);
+  
+  const fullText = 'CONTACT_ME.exe';
+  
+  useEffect(() => {
+    let index = 0;
+    const typeText = () => {
+      if (index <= fullText.length) {
+        setDisplayText(fullText.substring(0, index));
+        index++;
+        setTimeout(typeText, 150);
+      } else {
+        setIsComplete(true);
+      }
+    };
+    
+    const timer = setTimeout(typeText, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+  
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+    
+    return () => clearInterval(cursorInterval);
+  }, []);
+  
+  return (
+    <div className="text-center mb-8">
+      <div className="inline-block bg-gray-900 rounded-lg border border-gray-700 px-6 py-4 shadow-2xl">
+        <div className="flex items-center gap-3">
+          <div className="flex gap-1.5">
+            <div className="w-3 h-3 rounded-full bg-red-500" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500" />
+            <div className="w-3 h-3 rounded-full bg-green-500" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Terminal className="w-5 h-5 text-green-400" />
+            <span className="text-green-400 font-mono text-sm">terminal</span>
+          </div>
+        </div>
+        
+        <div className="mt-4 text-left">
+          <div className="text-green-400 font-mono text-sm mb-2">
+            <span className="text-purple-400">amitesh@portfolio</span>:
+            <span className="text-blue-400">~/</span>$ execute
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <span className="text-green-400 font-mono">></span>
+            <h1 className="text-2xl md:text-3xl font-mono font-bold text-white">
+              {displayText}
+              {showCursor && (
+                <span className="text-green-400 animate-pulse">_</span>
+              )}
+            </h1>
+          </div>
+          
+          {isComplete && (
+            <div className="mt-2 text-xs text-green-400 font-mono animate-fade-in">
+              $ program loaded successfully - ready for input
+            </div>
+          )}
+        </div>
+      </div>
+      
+      {isComplete && (
+        <div className="mt-4 text-gray-400 text-sm font-mono animate-fade-in">
+          Connect with me through the secure terminal below
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default function ContactMe() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [terminalOutput, setTerminalOutput] = useState([]);
@@ -17,7 +97,7 @@ export default function ContactMe() {
     intervalRef.current = setInterval(() => {
       setShowCursor(prev => !prev);
     }, 500);
-    
+
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -57,7 +137,7 @@ export default function ContactMe() {
   const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
+
     // Animate text on screen with slight delay
     setTimeout(() => {
       animateText(value, name);
@@ -67,7 +147,7 @@ export default function ContactMe() {
   // Optimized terminal animation
   const animateTerminalOutput = useCallback((lines, onComplete) => {
     setTerminalOutput([]);
-    
+
     let currentIndex = 0;
     const displayNextLine = () => {
       if (currentIndex < lines.length) {
@@ -78,7 +158,7 @@ export default function ContactMe() {
         if (onComplete) onComplete();
       }
     };
-    
+
     displayNextLine();
   }, []);
 
@@ -156,6 +236,9 @@ export default function ContactMe() {
   return (
     <div className="min-h-screen bg-black p-4 flex items-center justify-center">
       <div className="w-full max-w-7xl">
+        {/* Animated Heading */}
+        <AnimatedHeading />
+        
         <div className="grid grid-cols-1 xl:grid-cols-5 gap-6">
           {/* Terminal Form - Much Smaller */}
           <div className="xl:col-span-2 bg-gray-900 rounded-lg border border-gray-700 shadow-2xl overflow-hidden max-h-[600px]">
@@ -286,6 +369,16 @@ export default function ContactMe() {
           </div>
         </div>
       </div>
+      
+      <style jsx>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.8s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 }
@@ -301,7 +394,7 @@ const ComputerScreen = React.memo(({ displayData }) => (
         <div className="relative z-10 h-full">
           {/* New layout: Contact preview on top, stats below */}
           <div className="space-y-6 h-full">
-            
+
             {/* Top Section - Contact Preview (Full Width) */}
             <div className="w-full">
               <div className="text-center mb-6">
@@ -351,23 +444,23 @@ const ComputerScreen = React.memo(({ displayData }) => (
 
             {/* Bottom Section - Side by side stats panels */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1">
-              
+
               {/* Left Panel - Secure Connection */}
               <div className="bg-gray-900 rounded-lg border border-green-500/30 shadow-xl overflow-hidden relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 via-transparent to-green-500/20 animate-pulse"></div>
-                
+
                 <div className="relative p-4">
                   <div className="flex items-center gap-2 mb-4">
                     <Shield className="w-4 h-4 text-green-400" />
                     <h3 className="text-sm font-bold text-green-400 font-mono">SECURE_CONNECTION</h3>
                   </div>
-                  
+
                   <div className="space-y-3 text-xs">
                     <div className="flex items-center gap-2 text-gray-300">
                       <span className="text-green-400 font-mono">></span>
                       <span className="font-mono">Initiating encrypted handshake...</span>
                     </div>
-                    
+
                     <div className="bg-black/50 rounded p-3 border border-gray-700">
                       <div className="grid grid-cols-1 gap-2 text-xs font-mono">
                         <div className="flex justify-between">
@@ -388,7 +481,7 @@ const ComputerScreen = React.memo(({ displayData }) => (
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-2 text-gray-300">
                       <span className="text-green-400 font-mono">></span>
                       <span className="font-mono text-xs">Ready for new collaborations...</span>
@@ -400,29 +493,29 @@ const ComputerScreen = React.memo(({ displayData }) => (
               {/* Right Panel - System Stats */}
               <div className="bg-gray-900 rounded-lg border border-red-500/30 shadow-xl overflow-hidden relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20 animate-pulse"></div>
-                
+
                 <div className="relative p-4">
                   <div className="flex items-center gap-2 mb-4">
                     <Code className="w-4 h-4 text-red-400" />
                     <h3 className="text-sm font-bold text-red-400 font-mono">SYSTEM_STATS.log</h3>
                   </div>
-                  
+
                   <div className="grid grid-cols-2 gap-2">
                     <div className="bg-black/50 rounded p-2 border border-gray-700 text-center">
                       <div className="text-lg font-bold text-green-400 font-mono">15+</div>
                       <div className="text-xs text-gray-300 font-mono">EXPLOITS</div>
                     </div>
-                    
+
                     <div className="bg-black/50 rounded p-2 border border-gray-700 text-center">
                       <div className="text-lg font-bold text-blue-400 font-mono">2+</div>
                       <div className="text-xs text-gray-300 font-mono">YRS_EXP</div>
                     </div>
-                    
+
                     <div className="bg-black/50 rounded p-2 border border-gray-700 text-center">
                       <div className="text-lg font-bold text-yellow-400 font-mono">24/7</div>
                       <div className="text-xs text-gray-300 font-mono">UPTIME</div>
                     </div>
-                    
+
                     <div className="bg-black/50 rounded p-2 border border-gray-700 text-center">
                       <div className="text-lg font-bold text-purple-400 font-mono">100%</div>
                       <div className="text-xs text-gray-300 font-mono">COMMIT</div>
@@ -433,7 +526,7 @@ const ComputerScreen = React.memo(({ displayData }) => (
                       <div className="text-xs text-gray-300 font-mono">CONNECTION STATUS</div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-3 flex items-center gap-2 text-xs">
                     <Zap className="w-3 h-3 text-yellow-400" />
                     <span className="text-gray-400 font-mono">Last updated: just now</span>

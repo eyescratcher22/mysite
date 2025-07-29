@@ -19,7 +19,10 @@ export default function NavBar() {
       description: 'Professional Profile'
     },
     {
-      image: './images/github.jpg', link: 'https://github.com/eyescratcher22', title: 'Github', description: 'get my project repos here!'
+      image: './images/github.jpg', 
+      link: 'https://github.com/eyescratcher22', 
+      title: 'Github', 
+      description: 'get my project repos here!'
     },
     {
       image: './images/instagram.jpg',
@@ -41,8 +44,11 @@ export default function NavBar() {
         stagger: 0.2,
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top 50%',
+          start: 'top 80%',
+          end: 'bottom 20%',
           toggleActions: 'play none none reverse',
+          refreshPriority: 1,
+          invalidateOnRefresh: true,
         },
       }
     );
@@ -55,7 +61,9 @@ export default function NavBar() {
         height: '100vh',
         width: '100vw',
         position: 'relative',
-        overflow: 'hidden',
+        // Allow normal page scrolling
+        overflowY: 'visible',
+        overflowX: 'hidden',
       }}
       className='infinitemenu'
     >

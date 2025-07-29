@@ -3,6 +3,8 @@ import NavBar from "./sections/Social"
 // import Features from "./sections/Features"
 import TechStack from "./sections/TechStack"
 import ContactMe from "./sections/ContactMe"
+import MyProjects from "./sections/MyProjects"
+
 
 
 const App = () => {
@@ -14,6 +16,8 @@ const App = () => {
       <NavBar />
 
       <TechStack />
+
+      <MyProjects />
       <ContactMe />
       
      
