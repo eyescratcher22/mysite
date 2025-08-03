@@ -204,7 +204,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
             <div className="mb-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-mono text-gray-400">LOADING PROGRESS</span>
-                <span className="text-xs font-mono text-blue-400">{Math.round(progress)}%</span>
+                <span className="text-xs font-mono text-blue-400">{Math.round(Math.min(100, Math.max(0, progress)))}%</span>
               </div>
               <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
                 <div 
@@ -607,71 +607,74 @@ export default function MyProjects() {
 
   // Sample project data with computer-related categories
   const projects = [
-    {
-      name: "GameHub",
-      category: "GAME",
-      description: "Multi-platform gaming dashboard with real-time stats, achievement tracking, and social features for gamers.",
-      tech: ["React", "Node.js", "WebGL", "Socket.io", "MongoDB"],
-      version: "3.2",
-      stars: "45",
-      size: "15.2MB",
-      github: "https://github.com/yourusername/gamehub",
-      demo: "https://gamehub-demo.com"
-    },
-    {
-      name: "MusicFlow",
-      category: "MUSIC",
-      description: "Advanced music streaming platform with AI-powered recommendations and high-fidelity audio processing.",
-      tech: ["Vue.js", "Python", "FFmpeg", "Redis", "PostgreSQL"],
-      version: "2.8",
-      stars: "67",
-      size: "22.1MB",
-      github: "https://github.com/yourusername/musicflow",
-      demo: "https://musicflow-demo.com"
-    },
-    {
-      name: "StreamCast",
-      category: "MEDIA",
-      description: "Professional video streaming and editing suite with real-time effects and multi-platform broadcasting.",
-      tech: ["JavaScript", "WebRTC", "FFmpeg", "AWS", "Docker"],
-      version: "1.9",
-      stars: "32",
-      size: "45.7MB",
-      github: "https://github.com/yourusername/streamcast"
-    },
-    {
-      name: "DevToolbox",
-      category: "TOOL",
-      description: "Comprehensive developer utility suite with code formatting, API testing, and performance monitoring tools.",
-      tech: ["Electron", "TypeScript", "SQLite", "Jest", "Webpack"],
-      version: "4.1",
-      stars: "89",
-      size: "8.9MB",
-      github: "https://github.com/yourusername/devtoolbox",
-      demo: "https://devtoolbox-demo.com"
-    },
-    {
-      name: "CloudSync",
-      category: "WEB_APP",
-      description: "Secure cloud storage solution with end-to-end encryption, file versioning, and collaborative editing.",
-      tech: ["Next.js", "Go", "PostgreSQL", "Redis", "Docker"],
-      version: "2.5",
-      stars: "156",
-      size: "12.4MB",
-      github: "https://github.com/yourusername/cloudsync",
-      demo: "https://cloudsync-demo.com"
-    },
-    {
-      name: "DataFlow",
-      category: "API",
-      description: "High-performance API gateway with intelligent routing, rate limiting, and comprehensive analytics dashboard.",
-      tech: ["Go", "Kubernetes", "Prometheus", "Grafana", "PostgreSQL"],
-      version: "1.6",
-      stars: "73",
-      size: "6.2MB",
-      github: "https://github.com/yourusername/dataflow"
-    }
-  ];
+  {
+    name: "",
+    category: "",
+    description: "",
+    tech: ["React", "Node.js", "WebGL", "Socket.io", "MongoDB"],
+    version: "",
+    stars: "",
+    size: "",
+    github: "",
+    demo: ""
+  },
+  {
+    name: "",
+    category: "",
+    description: "",
+    tech: ["Vue.js", "Python", "FFmpeg", "Redis", "PostgreSQL"],
+    version: "",
+    stars: "",
+    size: "",
+    github: "",
+    demo: ""
+  },
+  {
+    name: "",
+    category: "",
+    description: "",
+    tech: ["JavaScript", "WebRTC", "FFmpeg", "AWS", "Docker"],
+    version: "",
+    stars: "",
+    size: "",
+    github: "",
+    demo: ""
+  },
+  {
+    name: "",
+    category: "",
+    description: "",
+    tech: ["Electron", "TypeScript", "SQLite", "Jest", "Webpack"],
+    version: "",
+    stars: "",
+    size: "",
+    github: "",
+    demo: ""
+  },
+  {
+    name: "",
+    category: "",
+    description: "",
+    tech: ["Next.js", "Go", "PostgreSQL", "Redis", "Docker"],
+    version: "",
+    stars: "",
+    size: "",
+    github: "",
+    demo: ""
+  },
+  {
+    name: "",
+    category: "",
+    description: "",
+    tech: ["Go", "Kubernetes", "Prometheus", "Grafana", "PostgreSQL"],
+    version: "",
+    stars: "",
+    size: "",
+    github: "",
+    demo: ""
+  }
+];
+
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
